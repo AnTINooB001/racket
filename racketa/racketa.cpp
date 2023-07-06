@@ -193,7 +193,7 @@ void putbullet()
 void initbullet()
 {
 	movebullet(2, 2);
-	bullet.speed = 0, 6;
+	bullet.speed = 0,6;
 	bullet.alpha = 1;
 }
 
