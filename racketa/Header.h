@@ -6,11 +6,12 @@
 #include <math.h>
 #include <thread>
 
-const int mapH = 30;
+const int mapH = 30;       // 1 к 4, ширина к высоте
 const int  mapW = 120;
+
 char map[mapH][mapW + 1];
 
-
+static int count = 0;
 
 typedef struct
 {
@@ -29,7 +30,9 @@ typedef struct
 	int Lex;
 	int Swidth;
 	int Lwidth;
-
+	float uskor;
+	float Dtime;
+	float speed;
 	int Largeheight;
 	int hp;
 } TBall;
@@ -46,6 +49,7 @@ typedef struct
 	float dy2;
 	float speed;
 	float alpha;
+	int damage;
 } TBullet;
 
 TRacket racket;
@@ -68,3 +72,4 @@ void firebullet();
 void movebullet(float x, float y);
 void initBall(); 
 void putLargeBall();
+void slow();

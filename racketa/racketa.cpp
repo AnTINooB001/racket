@@ -14,21 +14,73 @@ void hit()
 {
 	if (map[bullet.y1][bullet.x1] == 'Q' || map[bullet.y1][bullet.x1] == 'o')
 	{
-		ball.hp -= 10;
+		ball.hp -= bullet.damage;
 		fire = false;
 	}
 	if (map[bullet.y2 + 1][bullet.x2] == 'Q' || map[bullet.y2][bullet.x2] == 'o')
 	{
-		ball.hp -= 10;
+		ball.hp -= bullet.damage;
 		fire = false;
 
 	}
 }
 
+void slow()
+{
+	if (count == 2)
+	{
+		ball.Ly -= 1;
+		//count = 0;
+	}
+	if (count == 3)
+	{
+		ball.Ly -= 1;
+
+	}
+	if (count == 4)
+	{
+		ball.Ly -= 1;
+
+	}
+	if (count == 5)
+	{
+		ball.Ly -= 1;
+
+	}
+	if (count == 6)
+	{
+		ball.Ly -= 1;
+		
+	}
+	if (count == 7)
+	{
+		ball.Ly -= 1;
+	
+	}
+	if (count == 8)
+	{
+		ball.Ly -= 1;
+		
+	}
+	if (count == 9)
+	{
+		ball.Ly -= 1;
+
+	}
+	if (count == 10)
+	{
+		ball.Ly -= 1;
+		count = 0;
+	}
+}
+
 void moveball()
 {
-	ball.Ly += 1;
+	ball.Ly += 1;//(int)round(ball.speed);
+	count++;
 	
+	slow();
+
 	if (ball.Ly - 10 >= mapH || ball.hp <= 0)
 		initBall();
 }
@@ -36,8 +88,6 @@ void moveball()
 void initBall()
 {
 	ball.x = rand() % mapW - 20;
-	
-	
 	
 
 	ball.Ly = 0;
@@ -47,7 +97,9 @@ void initBall()
 	ball.Lex = ball.x + ball.Lwidth;
 
 
-	ball.hp = 10;
+	ball.hp = 100;   //
+
+
 	ball.LxMin = ball.x - 7;
 
 	while (ball.LxMin < 0)
@@ -166,7 +218,7 @@ void movebullet(float x, float y)
 		}
 		fire = false;
 
-		//movebullet(racket.x, racket.y);
+		
 	}
 }
 
@@ -193,8 +245,9 @@ void putbullet()
 void initbullet()
 {
 	movebullet(2, 2);
-	bullet.speed = 0,6;
+	bullet.speed = 0;
 	bullet.alpha = 1;
+	bullet.damage = 1;
 }
 
 void ininRacket()
