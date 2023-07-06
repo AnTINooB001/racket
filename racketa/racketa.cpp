@@ -9,6 +9,8 @@ void setcur(int x, int y)
 	coord.Y = y;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
+
+
 void collision()
 {
 	if (map[racket.y-3][racket.x+2] == 'o' || map[racket.y - 3][racket.x + 2] == 'Q')
@@ -29,12 +31,13 @@ void hit()
 	{
 		ball.hp -= bullet.damage;
 		fire = false;
+		Score++;
 	}
 	if (map[bullet.y2 + 1][bullet.x2] == 'Q' || map[bullet.y2][bullet.x2] == 'o')
 	{
 		ball.hp -= bullet.damage;
 		fire = false;
-
+		Score++;
 	}
 }
 
@@ -375,11 +378,12 @@ int main()
 			firebullet();
 		if(!fire)
 			movebullet(racket.x, racket.y);
-		putRacket();
+		putRacket(); 
 		showMap();
 		moveball();
 		hit();
 		collision();
+		
 
 		if (GetKeyState('A') < 0)
 			racketMove(racket.x - 1, racket.y);
