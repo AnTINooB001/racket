@@ -55,7 +55,7 @@ TRacket racket;
 TBall ball;
 TBullet bullet;
 bool fire = false;
-
+bool lose = false;
 
 
 

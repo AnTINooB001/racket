@@ -9,6 +9,19 @@ void setcur(int x, int y)
 	coord.Y = y;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
+void collision()
+{
+	if (map[racket.y-3][racket.x+2] == 'o' || map[racket.y - 3][racket.x + 2] == 'Q')
+		lose = true;
+	if (map[racket.y - 3][racket.x -2 + racket.width] == 'o' || map[racket.y - 3][racket.x - 2 + racket.width] == 'Q')
+		lose = true;
+	if(map[racket.y - 3][racket.x + racket.width - 4] == 'Q' || map[racket.y - 3][racket.x + racket.width - 4] == 'o')
+		lose = true;
+	if(map[racket.y - 3][racket.x + 4] == 'Q' || map[racket.y - 3][racket.x + 4] == 'o')
+		lose = true;
+	if(map[racket.y - 2][racket.x] == 'Q' || map[racket.y - 2][racket.x] == 'o')
+		lose = true;
+}
 
 void hit()
 {
@@ -70,18 +83,18 @@ void slow()
 	if (count == 10)
 	{
 		ball.Ly -= 1;
-
+		count = 0;
 	}
-	if (count == 11)
-	{
-		ball.Ly -= 1;
-
-	}
-	if (count == 12)
+	/*if (count == 11)
 	{
 		ball.Ly -= 1;
 		count = 0;
-	}
+	}*/
+	/*if (count == 12)
+	{
+		ball.Ly -= 1;
+		count = 0;
+	}*/
 	
 }
 
@@ -93,7 +106,7 @@ void moveball()
 	slow();
 	
 
-	if (ball.Ly - 10 >= mapH || ball.hp <= 0)
+	if (ball.Ly - 10 >= mapH || ball.hp == 0)
 		initBall();
 }
 
@@ -127,101 +140,76 @@ void putLargeBall()
 {
 	
 
-	if (ball.Ly >= 0 && ball.Ly < mapH && ball.hp > 60)
+	if (ball.Ly >= 0 && ball.Ly < mapH && ball.hp > 90)
 	{
 		for (int i = ball.x + 1; i < ball.ex - 1; i++)
 		{
 			map[ball.Ly][i] = 'Q';
 		}
 	}
-	else
-	{
-		for (int i = ball.x + 1; i < ball.ex - 3; i++)
-		{
-			map[ball.Ly][i] = 'Q';
-		}
-	}
-	if (ball.Ly >= 1 && ball.Ly < mapH + 1 && ball.hp > 75)
+	if (ball.Ly >= 1 && ball.Ly < mapH + 1 && ball.hp > 80)
 	{
 		for (int i = ball.x - 2; i < ball.ex + 2; i++)
 		{
 			map[ball.Ly - 1][i] = 'Q';
 		}
 	}
-	else 
-	{
-		for (int i = ball.x + 3; i < ball.ex + 2; i++)
-		{
-			map[ball.Ly - 1][i] = 'Q';
-		}
-	}
-	if (ball.Ly >= 2 && ball.Ly < mapH + 2)
+	if (ball.Ly >= 2 && ball.Ly < mapH + 2 && ball.hp > 65)
 	{
 		for (int i = ball.x - 5; i < ball.ex + 5; i++)
 		{
 			map[ball.Ly - 2][i] = '1';
 		}
 	}
-	if (ball.Ly >= 3 && ball.Ly < mapH + 3)
+	if (ball.Ly >= 3 && ball.Ly < mapH + 3 && ball.hp > 50)
 	{
 		for (int i = ball.x - 6; i < ball.ex + 6; i++)
 		{
 			map[ball.Ly - 3][i] = 'o';
 		}
 	}
-	if (ball.Ly >= 4 && ball.Ly < mapH + 4)
+	if (ball.Ly >= 4 && ball.Ly < mapH + 4 && ball.hp > 45)
 	{
-		if(ball.hp > 50)
-			for (int i = ball.x - 7; i < ball.ex + 7; i++)
-				map[ball.Ly - 4][i] = 'o';
-		else
-		{
-			for (int i = ball.x - 7; i < ball.ex - 13; i++)
-			{
-				map[ball.Ly - 4][i] = 'o';
-			}
-			for (int i = ball.x + 18; i < ball.ex + 7; i++)
-			{
-				map[ball.Ly - 4][i] = 'o';
-			}
-		}
+		for (int i = ball.x - 7; i < ball.ex + 7; i++)
+			map[ball.Ly - 4][i] = 'o';
+		
 	}
-	if (ball.Ly >= 5 && ball.Ly < mapH + 5)
+	if (ball.Ly >= 5 && ball.Ly < mapH + 5 && ball.hp > 40)
 	{
 		for (int i = ball.x - 7; i < ball.ex + 7; i++)
 		{
 			map[ball.Ly - 5][i] = 'o';
 		}
 	}
-	if (ball.Ly >= 6 && ball.Ly < mapH + 6)
+	if (ball.Ly >= 6 && ball.Ly < mapH + 6 && ball.hp > 30)
 	{
 		for (int i = ball.x - 6; i < ball.ex + 6; i++)
 		{
 			map[ball.Ly - 6][i] = 'o';
 		}
 	}
-	if (ball.Ly >= 7 && ball.Ly < mapH + 7)
+	if (ball.Ly >= 7 && ball.Ly < mapH + 7 && ball.hp > 25)
 	{
 		for (int i = ball.x - 5; i < ball.ex + 5; i++)
 		{
 			map[ball.Ly - 7][i] = 'o';
 		}
 	}
-	if (ball.Ly >= 8 && ball.Ly < mapH + 8)
+	if (ball.Ly >= 8 && ball.Ly < mapH + 8 && ball.hp > 15)
 	{
 		for (int i = ball.x - 2; i < ball.ex + 2; i++)
 		{
 			map[ball.Ly - 8][i] = 'o';
 		}
 	}
-	if (ball.Ly >= 9 && ball.Ly < mapH + 9)
+	if (ball.Ly >= 9 && ball.Ly < mapH + 9 && ball.hp > 5)
 	{
 		for (int i = ball.x + 1; i < ball.ex - 1; i++)
 		{
 			map[ball.Ly - 9][i] = 'o';
 		}
 	}
-	if (ball.Ly >= 10 && ball.Ly < mapH + 10)
+	if (ball.Ly >= 10 && ball.Ly < mapH + 10 && ball.hp > 5)
 	{
 		for (int i = ball.x + 4; i < ball.ex - 4; i++)
 		{
@@ -283,7 +271,7 @@ void initbullet()
 	movebullet(2, 2);
 	bullet.speed = 0;
 	bullet.alpha = 1;
-	bullet.damage = 1;
+	bullet.damage = 2;
 }
 
 void ininRacket()
@@ -391,8 +379,7 @@ int main()
 		showMap();
 		moveball();
 		hit();
-
-		
+		collision();
 
 		if (GetKeyState('A') < 0)
 			racketMove(racket.x - 1, racket.y);
@@ -407,7 +394,7 @@ int main()
 		Sleep(10);
 		
 		
-	} while (GetKeyState(VK_ESCAPE) >= 0);
+	} while (GetKeyState(VK_ESCAPE) >= 0 && lose == false);
 
 	
 	return 0;
