@@ -30,7 +30,7 @@ void slow()
 	if (count == 2)
 	{
 		ball.Ly -= 1;
-		//count = 0;
+
 	}
 	if (count == 3)
 	{
@@ -50,17 +50,17 @@ void slow()
 	if (count == 6)
 	{
 		ball.Ly -= 1;
-		
+
 	}
 	if (count == 7)
 	{
 		ball.Ly -= 1;
-	
+
 	}
 	if (count == 8)
 	{
 		ball.Ly -= 1;
-		
+
 	}
 	if (count == 9)
 	{
@@ -70,8 +70,19 @@ void slow()
 	if (count == 10)
 	{
 		ball.Ly -= 1;
+
+	}
+	if (count == 11)
+	{
+		ball.Ly -= 1;
+
+	}
+	if (count == 12)
+	{
+		ball.Ly -= 1;
 		count = 0;
 	}
+	
 }
 
 void moveball()
@@ -80,6 +91,7 @@ void moveball()
 	count++;
 	
 	slow();
+	
 
 	if (ball.Ly - 10 >= mapH || ball.hp <= 0)
 		initBall();
@@ -115,16 +127,30 @@ void putLargeBall()
 {
 	
 
-	if (ball.Ly >= 0 && ball.Ly < mapH)
+	if (ball.Ly >= 0 && ball.Ly < mapH && ball.hp > 60)
 	{
 		for (int i = ball.x + 1; i < ball.ex - 1; i++)
 		{
 			map[ball.Ly][i] = 'Q';
 		}
 	}
-	if (ball.Ly >= 1 && ball.Ly < mapH + 1)
+	else
+	{
+		for (int i = ball.x + 1; i < ball.ex - 3; i++)
+		{
+			map[ball.Ly][i] = 'Q';
+		}
+	}
+	if (ball.Ly >= 1 && ball.Ly < mapH + 1 && ball.hp > 75)
 	{
 		for (int i = ball.x - 2; i < ball.ex + 2; i++)
+		{
+			map[ball.Ly - 1][i] = 'Q';
+		}
+	}
+	else 
+	{
+		for (int i = ball.x + 3; i < ball.ex + 2; i++)
 		{
 			map[ball.Ly - 1][i] = 'Q';
 		}
@@ -145,9 +171,19 @@ void putLargeBall()
 	}
 	if (ball.Ly >= 4 && ball.Ly < mapH + 4)
 	{
-		for (int i = ball.x - 7; i < ball.ex + 7; i++)
+		if(ball.hp > 50)
+			for (int i = ball.x - 7; i < ball.ex + 7; i++)
+				map[ball.Ly - 4][i] = 'o';
+		else
 		{
-			map[ball.Ly - 4][i] = 'o';
+			for (int i = ball.x - 7; i < ball.ex - 13; i++)
+			{
+				map[ball.Ly - 4][i] = 'o';
+			}
+			for (int i = ball.x + 18; i < ball.ex + 7; i++)
+			{
+				map[ball.Ly - 4][i] = 'o';
+			}
 		}
 	}
 	if (ball.Ly >= 5 && ball.Ly < mapH + 5)
@@ -332,7 +368,7 @@ void showMap()
 
 int main()
 {
-	char c;
+	
 	srand(time(NULL));
 	ininRacket();
 	initbullet();

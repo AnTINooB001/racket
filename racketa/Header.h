@@ -10,8 +10,7 @@ const int mapH = 30;       // 1 к 4, ширина к высоте
 const int  mapW = 120;
 
 char map[mapH][mapW + 1];
-
-static int count = 0;
+int count = 0;
 
 typedef struct
 {
