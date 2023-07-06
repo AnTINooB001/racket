@@ -29,7 +29,7 @@ typedef struct
 	int Lex;
 	int Swidth;
 	int Lwidth;
-	int Smallheight;
+
 	int Largeheight;
 	int hp;
 } TBall;
@@ -67,5 +67,4 @@ void putbullet();
 void firebullet();
 void movebullet(float x, float y);
 void initBall(); 
-void putSmallBall();
 void putLargeBall();

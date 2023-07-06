@@ -28,7 +28,7 @@ void hit()
 void moveball()
 {
 	ball.Ly += 1;
-	//Sleep(100);
+	
 	if (ball.Ly - 10 >= mapH || ball.hp <= 0)
 		initBall();
 }
@@ -39,14 +39,14 @@ void initBall()
 	
 	
 	
-	ball.Sy = 0;
+
 	ball.Ly = 0;
 	ball.Swidth = 10;
 	ball.Lwidth = 24;
 	ball.ex = ball.x + ball.Swidth;
 	ball.Lex = ball.x + ball.Lwidth;
-	ball.Smallheight = 6;
-	ball.Largeheight = 11;
+
+
 	ball.hp = 10;
 	ball.LxMin = ball.x - 7;
 
@@ -56,34 +56,6 @@ void initBall()
 		ball.x += 1;
 	}
 	
-}
-
-void putSmallBall()
-{
-	for (int i = ball.x; i < ball.ex; i++)
-	{
-		map[ball.Sy][i] = 'o';
-	}
-	for (int i = ball.x+2; i < ball.ex-2; i++)
-	{
-		map[ball.Sy+2][i] = 'Q';
-	}
-	for (int i = ball.x + 1; i < ball.ex - 1; i++)
-	{
-		map[ball.Sy + 1][i] = 'o';
-	}
-	for (int i = ball.x + 2; i < ball.ex - 2; i++)
-	{
-		map[ball.Sy - 1][i] = 'o';
-	}
-	for (int i = ball.x + 4; i < ball.ex - 4; i++)
-	{
-		map[ball.Sy + 3][i] = 'Q';
-	}
-	for (int i = ball.x + 4; i < ball.ex - 4; i++)
-	{
-		map[ball.Sy - 2][i] = 'o';
-	}
 }
 
 
@@ -312,7 +284,7 @@ int main()
 	ininRacket();
 	initbullet();
 	initBall();
-std::thread th;
+
 	
 	do
 	{
