@@ -10,6 +10,16 @@ void setcur(int x, int y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
+void putscore()
+{
+	char c[30];
+	sprintf_s(c, "score: %d", score);
+	int len = strlen(c);
+	for (int i = 0; i < len; i++)
+	{
+		map[2][i + 105] = c[i];
+	}
+}
 
 void collision()
 {
@@ -31,13 +41,13 @@ void hit()
 	{
 		ball.hp -= bullet.damage;
 		fire = false;
-		Score++;
+		score++;
 	}
 	if (map[bullet.y2 + 1][bullet.x2] == 'Q' || map[bullet.y2][bullet.x2] == 'o')
 	{
 		ball.hp -= bullet.damage;
 		fire = false;
-		Score++;
+		score++;
 	}
 }
 
@@ -370,7 +380,7 @@ int main()
 	{
 		
 		setcur(0, 0);
-
+	
 		initMap();
 		putLargeBall();
 		putbullet();
@@ -379,10 +389,12 @@ int main()
 		if(!fire)
 			movebullet(racket.x, racket.y);
 		putRacket(); 
-		showMap();
+		
 		moveball();
 		hit();
 		collision();
+		putscore();
+		showMap();
 		
 
 		if (GetKeyState('A') < 0)

@@ -56,9 +56,8 @@ TBall ball;
 TBullet bullet;
 bool fire = false;
 bool lose = false;
-int Score = 000;
-const int SIZEB = 3;
-char buff[SIZEB];
+
+int score = 0;
 
 
 void setcur(int x, int y);
